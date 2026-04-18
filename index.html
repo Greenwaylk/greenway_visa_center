@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Greenway Visa Center</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      background: linear-gradient(135deg, #1db954, #7b2cbf);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(15px);
+      padding: 30px;
+      border-radius: 20px;
+      width: 350px;
+      color: white;
+      text-align: center;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    }
+
+    .logo {
+      width: 80px;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      font-size: 20px;
+      margin-bottom: 5px;
+    }
+
+    p {
+      font-size: 13px;
+      margin-bottom: 20px;
+      opacity: 0.8;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 10px;
+      background: #00ffcc;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #00ccaa;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+  <!-- Replace with your logo -->
+  <img src="logo.png" class="logo" alt="logo">
+
+  <h1>Ready for Your Dream Visa? 🌍✈️</h1>
+  <p>Register now with Greenway Visa Center</p>
+
+  <input type="text" id="name" placeholder="Full Name" required>
+  <input type="text" id="phone" placeholder="Phone Number" required>
+  <input type="text" id="city" placeholder="City" required>
+
+  <select id="country">
+    <option value="">Select Country</option>
+    <option>Japan</option>
+    <option>Canada</option>
+    <option>Australia</option>
+    <option>UK</option>
+    
+  </select>
+
+  <button onclick="submitData()">Submit</button>
+</div>
+
+<!-- Firebase -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT.firebaseapp.com",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_PROJECT.appspot.com",
+    messagingSenderId: "XXXX",
+    appId: "XXXX"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  window.submitData = async function () {
+    const name = document.getElementById("name").value;
+    const phone = document.getElementById("phone").value;
+    const city = document.getElementById("city").value;
+    const country = document.getElementById("country").value;
+
+    if (!name || !phone || !city || !country) {
+      alert("Please fill all fields");
+      return;
+    }
+
+    try {
+      await addDoc(collection(db, "students"), {
+        name,
+        phone,
+        city,
+        country,
+        createdAt: new Date()
+      });
+
+      alert("Registration Successful 🎉");
+
+      document.getElementById("name").value = "";
+      document.getElementById("phone").value = "";
+      document.getElementById("city").value = "";
+      document.getElementById("country").value = "";
+
+    } catch (error) {
+      console.error(error);
+      alert("Error submitting data");
+    }
+  }
+</script>
+
+</body>
+</html>
