@@ -16,11 +16,12 @@
     }
 
     body {
-      height: 100vh;
+      min-height: 100vh;
       background: linear-gradient(135deg, #1db954, #7b2cbf);
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: flex-start;
+      padding: 20px;
     }
 
     .container {
@@ -89,22 +90,64 @@
     button:hover {
       background: #00ccaa;
     }
+
+    /* ✅ ABOUT SECTION */
+    .about-box {
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 15px;
+      background: rgba(255, 255, 255, 0.08);
+      text-align: left;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .about-box h2 {
+      font-size: 16px;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+
+.about-text {
+  opacity: 0.9;
+  margin-bottom: 10px;
+  word-break: break-word;
+  line-height: 1.6;
+}
+
+.contact-list p {
+  margin: 6px 0;
+  font-size: 12px;
+  word-break: break-word;
+  line-height: 1.4;
+}
+
+.contact-list a {
+  color: #00ffcc;
+  text-decoration: none;
+  font-weight: 500;
+}
+
   </style>
 </head>
 
 <body>
 
 <div class="container">
+
   <img src="logo.png" class="logo" alt="logo">
 
-  <!-- ✅ FIXED VIDEO -->
+  <!-- VIDEO -->
   <div class="video-box">
-    <iframe width="1013" height="570" src="https://www.youtube.com/embed/3BXDhQ7yQZw" title="Greenway Group Of Companies" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-      
+    <iframe src="https://www.youtube.com/embed/3BXDhQ7yQZw"
+      title="Greenway Group Of Companies"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen>
     </iframe>
   </div>
 
-  <p style="font-size:12px;">Watch how we help students go abroad ✈️</p>
+  <p>Watch how we help students go abroad ✈️</p>
 
   <h1>Ready for Your Dream Visa? 🌍✈️</h1>
   <p>Register now with Greenway Visa Center</p>
@@ -122,13 +165,57 @@
   </select>
 
   <button onclick="submitData()">Submit</button>
+
+  <!-- ✅ ABOUT SECTION INSIDE CONTAINER -->
+  <!-- ✅ ABOUT SECTION INSIDE CONTAINER -->
+<div class="about-box">
+  <h2>About Greenway</h2>
+
+  <p class="about-text">
+    <strong>Serving Excellence Since 1986</strong><br><br>
+
+    Since 1986, under the visionary leadership of Dr. Santha Jayasundara, 
+    Greenway Agencies has served as a bridge connecting Sri Lankan skilled workers 
+    to global opportunities.<br><br>
+
+    As Sri Lanka’s No.1 Foreign Employment Agency, Greenway is licensed under 
+    SLBFE (License No. 788).
+  </p>
+
+  <div class="contact-list">
+    <p>
+      <strong>📞 Greenway Agencies Hotline:</strong>
+      <a href="tel:1350">1350</a>
+    </p>
+
+    <p>
+      <strong>🌐 Greenway Visa Center:</strong>
+      <a href="tel:1393">1393</a>
+    </p>
+
+    <p>
+      <strong>🎓 Greenway Technical College:</strong>
+      <a href="tel:0741234567">0741234567</a>
+    </p>
+
+    <p>
+      <strong>🏫 Greenway Training Center:</strong>
+      <a href="tel:0377100160">0377100160</a>
+    </p>
+
+    <p>
+      <strong>🏡 Greenway Lands:</strong>
+      <a href="tel:0741234565">0741234565</a>
+    </p>
+  </div>
+</div>
+
 </div>
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
   import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-  // ⚠️ REPLACE WITH YOUR REAL FIREBASE CONFIG
   const firebaseConfig = {
     apiKey: "YOUR_API_KEY",
     authDomain: "YOUR_PROJECT.firebaseapp.com",
