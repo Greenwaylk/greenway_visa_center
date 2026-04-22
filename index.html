@@ -47,8 +47,23 @@
 
     p {
       font-size: 13px;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
       opacity: 0.8;
+    }
+
+    /* VIDEO STYLE */
+    .video-box {
+      width: 100%;
+      height: 180px;
+      border-radius: 15px;
+      overflow: hidden;
+      margin-bottom: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    }
+
+    .video-box iframe {
+      width: 100%;
+      height: 100%;
     }
 
     input, select {
@@ -82,8 +97,21 @@
 <body>
 
 <div class="container">
-  <!-- Replace with your logo -->
+  <!-- Logo -->
   <img src="logo.png" class="logo" alt="logo">
+
+  <!-- 🎥 VIDEO ADDED HERE -->
+  <div class="video-box">
+    <iframe 
+      src="https://www.youtube.com/watch?v=U61nPfaY8mU&t=19s"
+      frameborder="0"
+      allow="autoplay; encrypted-media"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <p style="font-size:12px;">Watch how we help students go abroad ✈️</p>
 
   <h1>Ready for Your Dream Visa? 🌍✈️</h1>
   <p>Register now with Greenway Visa Center</p>
@@ -98,7 +126,6 @@
     <option>Canada</option>
     <option>Australia</option>
     <option>UK</option>
-    
   </select>
 
   <button onclick="submitData()">Submit</button>
