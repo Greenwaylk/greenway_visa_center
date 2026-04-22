@@ -5,7 +5,6 @@
   <title>Greenway Visa Center</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
   <style>
@@ -51,7 +50,6 @@
       opacity: 0.8;
     }
 
-    /* VIDEO STYLE */
     .video-box {
       width: 100%;
       height: 180px;
@@ -97,17 +95,12 @@
 <body>
 
 <div class="container">
-  <!-- Logo -->
   <img src="logo.png" class="logo" alt="logo">
 
-  <!-- 🎥 VIDEO ADDED HERE -->
+  <!-- ✅ FIXED VIDEO -->
   <div class="video-box">
-    <iframe 
-      src="https://www.youtube.com/watch?v=U61nPfaY8mU&t=19s"
-      frameborder="0"
-      allow="autoplay; encrypted-media"
-      referrerpolicy="strict-origin-when-cross-origin"
-      allowfullscreen>
+    <iframe width="1013" height="570" src="https://www.youtube.com/embed/3BXDhQ7yQZw" title="Greenway Group Of Companies" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+      
     </iframe>
   </div>
 
@@ -131,11 +124,11 @@
   <button onclick="submitData()">Submit</button>
 </div>
 
-<!-- Firebase -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
   import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
+  // ⚠️ REPLACE WITH YOUR REAL FIREBASE CONFIG
   const firebaseConfig = {
     apiKey: "YOUR_API_KEY",
     authDomain: "YOUR_PROJECT.firebaseapp.com",
@@ -149,6 +142,10 @@
   const db = getFirestore(app);
 
   window.submitData = async function () {
+    const btn = document.querySelector("button");
+    btn.innerText = "Submitting...";
+    btn.disabled = true;
+
     const name = document.getElementById("name").value;
     const phone = document.getElementById("phone").value;
     const city = document.getElementById("city").value;
@@ -156,6 +153,8 @@
 
     if (!name || !phone || !city || !country) {
       alert("Please fill all fields");
+      btn.innerText = "Submit";
+      btn.disabled = false;
       return;
     }
 
@@ -179,6 +178,9 @@
       console.error(error);
       alert("Error submitting data");
     }
+
+    btn.innerText = "Submit";
+    btn.disabled = false;
   }
 </script>
 
